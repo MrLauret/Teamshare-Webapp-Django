@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <link rel="shortcut icon" href="{% static 'Images/favicon.ico' %}" type="image/x-icon">
+    <link rel="icon" href="{% static 'Images/favicon.ico' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'body.css' %}">
+
+    <meta charset="UTF-8">
+    <title>404 - Page Not Found</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #0f0f0f;
+            color: #eaeaea;
+            text-align: center;
+            padding-top: 10%;
+        }
+        a {
+            color: #4fa3ff;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        h1 {
+            font-size: 60px;
+            margin-bottom: 10px;
+        }
+        p {
+            font-size: 22px;
+            color: #bbbbbb;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>404</h1>
+    <p>The page you're looking for doesn't exist.</p>
+
+    <a href="/Home">Return Home</a>
+
+</body>
+</html>

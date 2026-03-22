@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Not Found</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'body.css' %}">
+    <link rel="shortcut icon" href="{% static 'Images/favicon.ico' %}" type="image/x-icon">
+    <link rel="icon" href="{% static 'Images/favicon.ico' %}" type="image/x-icon">
+
+    <style>
+        a{
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    {% include 'logo.html' %}
+
+    <h1>Group not found</h1>
+
+    <a href="/Home">Return home</a>
+</body>
+</html>

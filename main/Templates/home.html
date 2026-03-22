@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lapcamp Home</title>
+
+    {% load static %}
+    <link rel="shortcut icon" href="{% static 'Images/favicon.ico' %}" type="image/x-icon">
+    <link rel="icon" href="{% static 'Images/favicon.ico' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'body.css' %}">
+
+    <style>
+        a{
+            text-decoration: none;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            padding: 3rem 2rem 6rem;
+            background: linear-gradient(135deg, #1c1c28, #2a2a3d, #1a1a26);
+            background-size: 250% 250%;
+            animation: bgMove 12s ease infinite;
+            color: #f0f0f0;
+        }
+
+        @keyframes bgMove {
+            0% { background-position: 0% 0%; }
+            50% { background-position: 100% 100%; }
+            100% { background-position: 0% 0%; }
+        }
+
+        /* Welcome banner */
+        h3 {
+            font-size: 2.8rem;
+            font-weight: 600;
+            text-align: center;
+            margin-top: 1.5rem;
+            margin-bottom: 2rem;
+            color: #ffffffd9;
+            text-shadow: 0 3px 15px rgba(0,0,0,0.5);
+        }
+
+        /* Top-right actions */
+        .top-right {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .top-right a {
+            padding: 0.8rem 1.4rem;
+            background: #4f46e5;
+            color: white;
+            border-radius: 10px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: 0.2s ease-in-out;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.3);
+        }
+
+        .top-right a:hover {
+            background: #6366f1;
+            transform: translateY(-3px);
+        }
+
+        /* Message banners */
+        .messages p {
+            background: #4f46e5;
+            padding: 0.8rem 1rem;
+            border-radius: 10px;
+            text-align: center;
+            width: fit-content;
+            margin: 0 auto 1rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+        }
+
+        /* Main container */
+        .container {
+            padding: 3rem 3rem;
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(12px);
+            border-radius: 18px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.45);
+            max-width: 850px;
+            margin: 2rem auto;
+            text-align: center;
+        }
+
+        /* Group list */
+        .group-list {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 1.2rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+            justify-self: center;
+            justify-items: center;
+            justify-content: center;
+        }
+
+        .group-item {
+            padding: 1.3rem 2.2rem;
+            background: rgba(255,255,255,0.08);
+            border-radius: 14px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #fff;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.35);
+            transition: 0.25s ease;
+            cursor: pointer;
+            backdrop-filter: blur(8px);
+        }
+
+        .group-item:hover {
+            transform: translateY(-6px) scale(1.03);
+            background: #4f46e5;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.55);
+        }
+
+        /* Footer */
+        footer {
+            position: fixed;
+            bottom: 8px;
+            left: 10px;
+            background: rgba(84, 15, 16, 0.9);
+            color: white;
+            padding: 1rem 2rem;
+            text-align: center;
+            border-radius: 1rem;
+            backdrop-filter: blur(6px);
+        }
+
+        footer h2 {
+            margin: 0;
+            font-size: 1.4rem;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        footer a {
+            text-decoration: none;
+            color: white;
+        }
+
+        footer h2:hover {
+            color: #4f46e5;
+        }
+
+    </style>
+</head>
+
+<body>
+    {% include 'logo.html' %}
+
+    <h3>Welcome again, {{ Username }} 👋</h3>
+
+    <!-- Action buttons -->
+    <div class="top-right">
+        <a href="/Make">Make group</a>
+        <a href="/Join">Join group</a>
+    </div>
+
+    <!-- Messages -->
+    {% if messages %}
+        <div class="messages">
+            {% for msg in messages %}
+                <p>{{ msg }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    {% if not inGroup %}
+        <h1 style="text-align:center; margin-top:3rem;">You are not in any group yet!</h1>
+    {% else %}
+        <div class="container">
+            <h1>Your Groups</h1>
+            <ul class="group-list">
+                {% for group in Groups %}
+                    <a href="/Group/{{ group.id }}"><li class="group-item">{{ group.Name }}</li></a>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+
+    <a href="/Logout"><footer>
+        <h2>Logout</h2>
+    </footer></a>
+</body>
+</html>

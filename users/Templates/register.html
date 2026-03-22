@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'body.css' %}">
+    <link rel="shortcut icon" href="{% static 'Images/favicon.ico' %}" type="image/x-icon">
+    <link rel="icon" href="{% static 'Images/favicon.ico' %}" type="image/x-icon">
+
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #1e1e2f;
+            color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            background-color: #2c2c3c;
+            padding: 3rem 4rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 5px #000;
+        }
+
+        /* Messages */
+        .messages p {
+            background-color: #f87171; /* red-ish for errors/info */
+            color: #fff;
+            padding: 0.7rem 1rem;
+            border-radius: 6px;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        /* Form styles */
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            border: none;
+            outline: none;
+            font-size: 1rem;
+            background-color: #3b3b55;
+            color: #fff;
+        }
+
+        input[type="text"]::placeholder,
+        input[type="password"]::placeholder {
+            color: #bbb;
+        }
+
+        input[type="submit"] {
+            background-color: #4f46e5;
+            color: #fff;
+            padding: 0.8rem 1rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s ease, transform 0.2s ease;
+            margin-top: 1rem;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #6366f1;
+            transform: translateY(-2px);
+        }
+
+        a {
+            text-decoration: none;
+        }
+        a.Login {
+            display: inline-block;
+            margin-top: 1rem;
+            color: #4f46e5;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #6366f1;
+        }
+
+        /* Responsive for smaller screens */
+        @media (max-width: 500px) {
+            .container {
+                padding: 2rem 1.5rem;
+            }
+            h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    {% include "logo.html" %}
+
+    <div class="container">
+        <h2>Register</h2>
+
+        {% if messages %}
+            <div class="messages">
+                {% for msg in messages %}
+                    <p>{{ msg }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <form action="" method="post">
+            {% csrf_token %}
+            <input type="text" name="username" placeholder="Username" maxlength="20" minlength="3" pattern="[A-Za-z0-9]+" title="Letters, numbers only." required>
+            <input type="password" name="password" placeholder="Password" minlength="6" required>
+            <input type="submit" value="Register">
+        </form>
+
+        <a href="/Login" class="Login">Already have an account? Login</a>
+    </div>
+</body>
+</html>
