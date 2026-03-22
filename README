@@ -1,0 +1,32 @@
+# Django Group File Sharing App
+
+A Django web application that allows users to:
+
+- Create accounts
+- Create and join groups
+- Upload and download files inside groups
+- Send messages to groups
+- Join groups by id
+
+## Tech stack
+- Python
+- Django
+- SQLite (development)
+- HTML, CSS, JS
+
+## Setup
+
+pip install django
+python manage.py makemigrations
+python manage.py migrate
+python manage.py runserver
+
+#KEEP IN MIND
+
+The method used to login users is not profetional
+nor secure, you should use django's build in login
+function and user model.
+
+You should also use a PostgreSQL database or any
+other profetional database if you want to deploy an
+actual app.
