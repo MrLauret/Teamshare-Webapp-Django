@@ -12,7 +12,7 @@ A Django web application that allows users to:
 - Python
 - Django
 - SQLite (development)
-- HTML, CSS, JS
+- HTML, CSS
 
 ## Setup
 
